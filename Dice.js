@@ -24,19 +24,19 @@ class Dice {
         this.numbers_on_faces = nums;
     }
 
-    get n_o_faces() {
+    get num_of_faces() {
         return this.num_of_faces;
     }
 
-    set n_o_faces(new_num_of_faces) { 
+    set num_of_faces(new_num_of_faces) { 
         this.num_of_faces = new_num_of_faces;
     }
 
-    get nums_o_fcs() {
+    get numbers_on_faces() {
         return this.numbers_on_faces;
     }
 
-    set nums_o_fcs(new_numbers_on_faces) {
+    set numbers_on_faces(new_numbers_on_faces) {
         this.numbers_on_faces = new_numbers_on_faces;
     }
 
