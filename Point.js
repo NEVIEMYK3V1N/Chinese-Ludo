@@ -17,9 +17,11 @@ class Point {
     empty_func() {
     }
     interaction_type;
+    pieces_on_point;
+    index_in_runway;
 
     constructor(x_coord, y_coord, index_in_map, color, interaction,
-                interaction_type, pieces_on_point) {
+                interaction_type, pieces_on_point, index_in_runway) {
         this.x_coord = x_coord;
         this.y_coord = y_coord;
         this.index_in_map = index_in_map;
@@ -27,6 +29,7 @@ class Point {
         this.interaction = interaction;
         this.interaction_type = interaction_type;
         this.pieces_on_point = pieces_on_point;
+        this.index_in_runway = index_in_runway;
     }
 
     constructor() {
@@ -39,6 +42,7 @@ class Point {
         this.interaction_type = -1;
         const new_array = [];
         this.pieces_on_point = new_array;
+        this.index_in_runway = -1;
     }
 
     get x_coord() {
@@ -87,6 +91,14 @@ class Point {
 
     set pieces_on_point(new_pieces_on_point) {
         this.pieces_on_point = new_pieces_on_point;
+    }
+
+    get index_in_runway() {
+        return this.index_in_runway;
+    }
+
+    set index_in_runway(new_index_in_runway) {
+        this.index_in_runway = new_index_in_runway;
     }
 
 }

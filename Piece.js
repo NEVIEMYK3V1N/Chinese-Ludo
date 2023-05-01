@@ -14,6 +14,7 @@ class Piece {
     finished;
     in_base;
     in_runway;
+    is_blocked;
 
     constructor(color, pt_current, finished, in_base, in_runway) {
         this.color = color;
@@ -71,6 +72,14 @@ class Piece {
 
     set in_runway(new_in_runway) {
         this.in_runway = new_in_runway;
+    }
+
+    get is_blocked() {
+        return this.is_blocked;
+    }
+
+    set is_blocked(new_is_blocked) {
+        this.is_blocked = new_is_blocked;
     }
 
     move(pt_move_to) {

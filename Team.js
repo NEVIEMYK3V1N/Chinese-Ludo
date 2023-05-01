@@ -207,9 +207,45 @@ class Team {
         // move succeeded
         // if didnt roll 6
         if (num_rolled != CAN_LEAVE_BASE) {
-            // max num of 6 in a row reached - return all pieces to base
+            for (i = 0; i < num_rolled; i++) {
+                forward_runway = true;
+                forward_blocked = true;
+                flied = false;
+                const pt_before_fly = null;
+                // if in runway
+                if (current_piece.in_runway) {
+                    // if piece reached the end of runway
+                    if (current_piece.index_in_runway == this.runway_length - 1) {
+                        // if movement is finished
+                        if (i == num_rolled - 1) {
+                            current_piece.finished = true;
+                        }
+                        // now start moving backwards
+                        forward_runway = false;
+                    }
+                    // if the piece has not yet reached the end of runway - move forward
+                    if (forward_runway) {
+                        current_piece.index_in_runway += 1;
+                        current_piece.pt_current = 
+                        this.runway_points[current_piece.index_in_runway];
+                    }
+                    // if the piece reached the end of runway && still has moves - move backwards
+                    else if (!forward_runway) {
+                        current_piece.index_in_runway -= 1;
+                        current_piece.pt_current = 
+                        this.runway_points[current_piece.index_in_runway];
+                    }
+                }
 
-            // if in runway - runway move calculation
+                // if piece not in runway yet
+                else if (!current_piece.in_runway) {
+                    
+                }
+            }
+            
+            if (true) {
+
+            }
 
             // if no doubled-up pieces - move like usual
 
@@ -217,6 +253,9 @@ class Team {
         }
 
         // if rolled 6
+        else if (num_rolled == CAN_LEAVE_BASE) {
+            // max num of 6 in a row reached - return all pieces to base
+        }
     }
 
     valid_pieces_update (num_rolled, map) {
