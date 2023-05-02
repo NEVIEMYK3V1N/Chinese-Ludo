@@ -17,15 +17,6 @@ class Dice {
         }
     }
 
-    // by default - standard dice with 1-6 on 6 faces
-    constructor() {
-        this.num_of_faces = 6;
-        this.numbers_on_faces = new Array();
-        for (i = 0; i < this.num_of_faces; i++) {
-            nums[i] = i + 1;
-        }
-    }
-
     get num_of_faces() {
         return this.num_of_faces;
     }
