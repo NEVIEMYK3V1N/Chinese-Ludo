@@ -35,17 +35,6 @@ class Point {
         }
     }
 
-    constructor() {
-        this.x_coord = -1;
-        this.y_coord = -1;
-        this.index_in_map = -1;
-        let new_color = "";
-        this.color = new_color;
-        this.interaction_type = -1;
-        this.index_in_runway = -1;
-        this.pieces_on_point = new Array();
-    }
-
     get x_coord() {
         return this.x_coord;
     }

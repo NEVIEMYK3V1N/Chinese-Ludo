@@ -71,24 +71,6 @@ class Team {
         }
     }
 
-    constructor() {
-        this.team_num = -1;
-        this.color = "";
-        this.pieces_max = -1;
-        this.pieces_not_finished = -1;
-        this.finished = false;
-        this.pieces_in_base = -1;
-        this.index_pt_begin = -1;
-        this.index_pt_end = -1;
-        this.index_pt_runway_begin = -1;
-        this.all_pieces = new Array();
-        this.valid_action_pieces = new Array();
-        this.six_count = -1;
-        this.runway_points = new Array();
-        this.runway_length = -1;
-        this.spacing = -1;
-    }
-
     get team_num() {
         return this.team_num;
     }

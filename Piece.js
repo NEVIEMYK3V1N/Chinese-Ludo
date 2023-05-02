@@ -10,29 +10,22 @@ import Point from "Point.js";
 
 class Piece {
     color;
-    pt_current;
+    index_pt_current;
     finished;
     in_base;
     in_runway;
     is_blocked;
 
-    constructor(color, pt_current, finished, in_base, in_runway) {
+    constructor(color, index_pt_current, finished, in_base, in_runway, is_blocked) {
         this.color = color;
-        this.pt_current = pt_current;
+        this.index_pt_current = index_pt_current;
         this.finished = finished;
         this.in_base = in_base;
         this.in_runway = in_runway;
+        this.is_blocked = is_blocked;
     }
 
-    constructor() {
-        this.color = "";
-        this.pt_current = new Point();
-        this.finished = false;
-        this.in_base = true;
-        this.in_runway = false;
-    }
-
-    // unsure
+    /*
     get color() {
         return this.color;
     }
@@ -73,17 +66,14 @@ class Piece {
         this.is_blocked = new_is_blocked;
     }
 
-    get_pt_current(dest) {
-        Point.copy(dest, this.pt_current);
+    get index_pt_current() {
+        return this.index_pt_current;
     }
 
-    set_pt_current(new_pt_current) {
-        Point.copy(this.pt_current, new_pt_current);
+    set index_pt_current (new_index_pt_current) {
+        this.index_pt_current = new_index_pt_current;
     }
-
-    move(pt_move_to) {
-        Point.copy(this.pt_current, pt_move_to);
-    }
+    */
 
     static copy(dest, src) {
         dest.color = src.color;
@@ -91,6 +81,6 @@ class Piece {
         dest.in_base = src.in_base;
         dest.in_runway = src.in_runway;
         dest.is_blocked = src.is_blocked;
-        Point.copy(dest.pt_current, src.pt_current);
+        dest.index_pt_current = src.index_pt_current;
     }
 }
