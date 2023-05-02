@@ -11,17 +11,19 @@ class Dice {
 
     constructor(num_of_faces, numbers_on_faces) {
         this.num_of_faces = num_of_faces;
-        this.numbers_on_faces = numbers_on_faces;
+        this.numbers_on_faces = new Array();
+        for (i = 0; i < num_of_faces; i++) {
+            this.numbers_on_faces[i] = numbers_on_faces[i];
+        }
     }
 
     // by default - standard dice with 1-6 on 6 faces
     constructor() {
         this.num_of_faces = 6;
-        const nums = [];
+        this.numbers_on_faces = new Array();
         for (i = 0; i < this.num_of_faces; i++) {
             nums[i] = i + 1;
         }
-        this.numbers_on_faces = nums;
     }
 
     get num_of_faces() {
@@ -32,12 +34,12 @@ class Dice {
         this.num_of_faces = new_num_of_faces;
     }
 
-    get numbers_on_faces() {
-        return this.numbers_on_faces;
+    get_number_at_index(index) {
+        return this.numbers_on_faces[index];
     }
 
-    set numbers_on_faces(new_numbers_on_faces) {
-        this.numbers_on_faces = new_numbers_on_faces;
+    set_number_at_index(index, new_num) {
+        this.numbers_on_faces[index] = new_num;
     }
 
     roll() {

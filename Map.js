@@ -12,22 +12,16 @@ class Map {
     num_of_points;
 
     constructor(all_points, num_of_points) {
-        this.all_points = all_points;
+        this.all_points = new Array();
+        for (i = 0; i < num_of_points; i++) {
+            Point.copy(this.all_points[i], all_points[i]);
+        }
         this.num_of_points = num_of_points;
     }
 
     constructor() {
-        const all_pts = [];
-        this.all_points = all_pts;
+        this.all_points = new Array();
         this.num_of_points = 0;
-    }
-
-    get all_points() {
-        return this.all_points;
-    }
-
-    set all_points(new_all_points) {
-        this.all_points = this.new_all_points;
     }
 
     get num_of_points() {
@@ -38,7 +32,11 @@ class Map {
         this.num_of_points = new_num_of_points;
     }
 
-    change_point(index, pt) {
-        this.all_points[index] = pt;
+    get_point_at_index(dest, index) {
+        Point.copy(dest, this.all_points[index]);
+    }
+
+    set_point_at_index(new_pt, index) {
+        Point.copy(this.all_points[index], new_pt);
     }
 }

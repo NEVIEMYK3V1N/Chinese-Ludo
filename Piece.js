@@ -25,29 +25,20 @@ class Piece {
     }
 
     constructor() {
-        let new_color = "";
-        this.color = new_color;
-        const new_pt = new Point();
-        this.pt_current = new_pt;
+        this.color = "";
+        this.pt_current = new Point();
         this.finished = false;
         this.in_base = true;
         this.in_runway = false;
     }
 
+    // unsure
     get color() {
         return this.color;
     }
     
     set color(new_color) {
         this.color = new_color;
-    }
-
-    get pt_current() {
-        return this.pt_current;
-    }
-
-    set pt_current(new_pt_current) {
-        this.pt_current = new_pt_current;
     }
     
     get finished() {
@@ -82,7 +73,24 @@ class Piece {
         this.is_blocked = new_is_blocked;
     }
 
+    get_pt_current(dest) {
+        Point.copy(dest, this.pt_current);
+    }
+
+    set_pt_current(new_pt_current) {
+        Point.copy(this.pt_current, new_pt_current);
+    }
+
     move(pt_move_to) {
-        this.pt_current = pt_move_to;
+        Point.copy(this.pt_current, pt_move_to);
+    }
+
+    static copy(dest, src) {
+        dest.color = src.color;
+        dest.finished = src.finished;
+        dest.in_base = src.in_base;
+        dest.in_runway = src.in_runway;
+        dest.is_blocked = src.is_blocked;
+        Point.copy(dest.pt_current, src.pt_current);
     }
 }

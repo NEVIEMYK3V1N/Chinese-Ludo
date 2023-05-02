@@ -20,58 +20,73 @@ class Team {
     pieces_not_finished;
     finished;
     pieces_in_base;
-    pt_begin;
-    pt_end;
-    pt_runway_begin;
+    index_pt_begin;
+    index_pt_end;
+    index_pt_runway_begin;
     all_pieces;
     valid_action_pieces;
     six_count;
     runway_points;
     runway_length;
+    spacing;
 
 
     constructor(team_num, color, pieces_max, pieces_not_finished, 
-                finished, pieces_in_base, pt_begin, pt_end, pt_runway_begin,
-                all_pieces, valid_action_pieces,six_count,
-                runway_points, runway_length) {
+                finished, pieces_in_base, index_pt_begin, index_pt_end, 
+                index_pt_runway_begin, all_pieces, valid_action_pieces,
+                six_count, runway_points, runway_length, spacing) {
         this.team_num = team_num;
         this.color = color;
         this.pieces_max = pieces_max;
         this.pieces_not_finished = pieces_not_finished;
         this.finished = finished;
-        this.pieces_in_base = pieces_in_base;
-        this.pt_begin = pt_begin;
-        this.pt_end = pt_end;
-        this.pt_runway_begin = pt_runway_begin;
-        this.all_pieces = all_pieces;
-        this.valid_action_pieces = valid_action_pieces;
         this.six_count = six_count;
-        this.runway_points = runway_points;
+        this.pieces_in_base = pieces_in_base;
+        this.index_pt_begin = index_pt_begin;
+        this.index_pt_end = index_pt_end;
+        this.index_pt_runway_begin = index_pt_runway_begin;
         this.runway_length = runway_length;
+        this.spacing = spacing;
+
+        this.all_pieces = new Array();
+        for (i = 0; i < all_pieces.length; i++) {
+            this.all_pieces[i] = new Piece();
+            Piece.copy(this.all_pieces[i], all_pieces[i]);
+        }
+        
+        this.valid_action_pieces = new Array();
+        for (i = 0; i < valid_action_pieces.length; i++) {
+            if (typeof (valid_action_pieces[i]) == "boolean") {
+                this.valid_action_pieces[i] = valid_action_pieces[i];
+            } else {
+                this.valid_action_pieces[i] = new Point();
+                Point.copy(this.valid_action_pieces[i], valid_action_pieces[i]);
+            }
+        }
+
+        this.runway_points = new Array();
+        for (i = 0; i < runway_length; i++) {
+            this.runway_points[i] = new Point();
+            Point.copy(this.runway_points[i], runway_points[i]);
+        }
     }
 
     constructor() {
         this.team_num = -1;
-        let new_color = "";
-        this.color = new_color;
+        this.color = "";
         this.pieces_max = -1;
         this.pieces_not_finished = -1;
         this.finished = false;
         this.pieces_in_base = -1;
-        const pt_bgn = new Point();
-        this.pt_begin = pt_bgn;
-        const pt_ed = new Point();
-        this.pt_end = pt_ed;
-        const pt_rw_bgn = new Point();
-        this.pt_runway_begin = pt_rw_bgn;
-        const all_pcs = [];
-        this.all_pieces = all_pcs;
-        const vap = [];
-        this.valid_action_pieces = vap;
+        this.index_pt_begin = -1;
+        this.index_pt_end = -1;
+        this.index_pt_runway_begin = -1;
+        this.all_pieces = new Array();
+        this.valid_action_pieces = new Array();
         this.six_count = -1;
-        const rw_pts = [];
-        this.runway_points = rw_pts;
+        this.runway_points = new Array();
         this.runway_length = -1;
+        this.spacing = -1;
     }
 
     get team_num() {
@@ -114,6 +129,14 @@ class Team {
         this.finished = new_finished;
     }
 
+    get six_count() {
+        return this.six_count;
+    }
+
+    set six_count(new_six_count) {
+        this.six_count = new_six_count;
+    }
+
     get pieces_in_base() {
         return this.pieces_in_base;
     }
@@ -122,32 +145,63 @@ class Team {
         this.pieces_in_base = new_pieces_in_base;
     }
 
-    get pt_begin() {
-        return this.pt_begin;
+    get index_pt_begin() {
+        return this.index_pt_begin;
     }
     
-    set pt_begin(new_pt_begin) {
-        this.pt_begin = new_pt_begin;
+    set index_pt_begin(new_index_pt_begin) {
+        this.index_pt_begin = new_index_pt_begin;
     }
 
-    get pt_end() {
-        return this.pt_end;
+    get index_pt_end() {
+        return this.index_pt_end;
     }
     
-    set pt_end(new_pt_end) {
-        this.pt_end = new_pt_end;
+    set index_pt_end(new_index_pt_end) {
+        this.index_pt_end = new_index_pt_end;
     }
 
-    get pt_runway_begin() {
-        return this.pt_runway_begin;
+    get index_pt_runway_begin() {
+        return this.index_pt_runway_begin;
     }
     
-    set pt_runway_begin(new_pt_runway_begin) {
-        this.pt_runway_begin = new_pt_runway_begin;
+    set index_pt_runway_begin(new_index_pt_runway_begin) {
+        this.index_pt_runway_begin = new_index_pt_runway_begin;
     }
 
-    get all_pieces() {
-        return this.all_pieces;
+    get runway_length() {
+        return this.runway_length;
+    }
+
+    set runway_length(new_runway_length) {
+        this.runway_length = new_runway_length;
+    }
+
+    this.all_pieces = new Array();
+        for (i = 0; i < all_pieces.length; i++) {
+            this.all_pieces[i] = new Piece();
+            Piece.copy(this.all_pieces[i], all_pieces[i]);
+        }
+        
+        this.valid_action_pieces = new Array();
+        for (i = 0; i < valid_action_pieces.length; i++) {
+            if (typeof (valid_action_pieces[i]) == "boolean") {
+                this.valid_action_pieces[i] = valid_action_pieces[i];
+            } else {
+                this.valid_action_pieces[i] = new Point();
+                Point.copy(this.valid_action_pieces[i], valid_action_pieces[i]);
+            }
+        }
+
+        this.runway_points = new Array();
+        for (i = 0; i < runway_length; i++) {
+            this.runway_points[i] = new Point();
+            Point.copy(this.runway_points[i], runway_points[i]);
+        }
+    
+    get_all_pieces(dest) {
+        dest = new Array();
+        
     }
     
     set all_pieces(new_all_pieces) {
@@ -168,28 +222,21 @@ class Team {
 
     set runway_points(new_runway_points) {
         this.runway_points = this.runway_points;
-    }
-
-    get runway_length() {
-        return this.runway_length;
-    }
-
-    set runway_length(new_runway_length) {
-        this.runway_length = new_runway_length;
-    }
+    }    
 
     roll_dice(d) {
         return d.roll();
     }
 
-    get_point_after_move(num_rolled, piece_index, map) {
+    update_point_after_move(num_rolled, piece_index, map) {
         // move failed
         // index invalid
         if (piece_index < 0 || piece_index >= this.pieces_max) {
             return false;
         }
         
-        const current_piece = this.all_pieces[piece_index];
+        const current_piece = new Piece();
+        Piece.copy(current_piece, this.all_pieces[piece_index]);
 
         // piece already finished
         if (current_piece.finished) {
@@ -201,8 +248,11 @@ class Team {
             return false;
         }
 
-        const current_point = current_piece.pt_current;
-        current_index = current_point.index_in_map;
+        const original_pt = new Point();
+        Point.copy(original_pt, current_piece.pt_current);
+        original_index = current_piece.pt_current.index_in_map;
+
+        current_index = original_index;
         
         // move succeeded
         // if didnt roll 6
@@ -211,7 +261,8 @@ class Team {
                 forward_runway = true;
                 forward_blocked = true;
                 flied = false;
-                const pt_before_fly = null;
+                index_pt_before_fly;
+                is_blocked = current_piece.is_blocked;
                 // if in runway
                 if (current_piece.in_runway) {
                     // if piece reached the end of runway
@@ -239,7 +290,19 @@ class Team {
 
                 // if piece not in runway yet
                 else if (!current_piece.in_runway) {
-                    
+                    next_index;
+                    // if the point is at the end of the map array - cycles back
+                    if (current_index == map.num_of_points) {
+                        next_index = 0;
+                    } else {
+                        next_index = current_index + 1;
+                    }
+
+                    // if the piece is not blocked and 
+                    if (next_index == this.index_pt_runway_begin && 
+                        !is_blocked) {
+
+                    }
                 }
             }
             
