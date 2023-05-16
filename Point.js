@@ -35,6 +35,7 @@ class Point {
         }
     }
 
+    /*
     get x_coord() {
         return this.x_coord;
     }
@@ -82,6 +83,7 @@ class Point {
     set index_in_runway(new_index_in_runway) {
         this.index_in_runway = new_index_in_runway;
     }
+    */ 
 
     get_pieces_on_point(dest) {
         if (this.pieces_on_point = null) {
